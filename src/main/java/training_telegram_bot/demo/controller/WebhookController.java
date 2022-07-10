@@ -1,6 +1,5 @@
 package training_telegram_bot.demo.controller;
 
-import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +16,6 @@ public class WebhookController {
         this.telegramBot = telegramBot;
     }
 
-    @SneakyThrows
     @PostMapping("/")
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
         return telegramBot.onWebhookUpdateReceived(update);
