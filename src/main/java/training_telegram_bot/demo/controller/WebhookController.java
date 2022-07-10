@@ -1,5 +1,7 @@
 package training_telegram_bot.demo.controller;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,5 +21,10 @@ public class WebhookController {
     @PostMapping("/")
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
         return telegramBot.onWebhookUpdateReceived(update);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<String> getAnswerIfAppIsAvailable(){
+        return ResponseEntity.ok("App work fine");
     }
 }
