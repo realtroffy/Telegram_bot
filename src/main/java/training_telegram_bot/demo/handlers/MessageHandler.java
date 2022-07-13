@@ -51,6 +51,7 @@ public class MessageHandler {
   }
 
   public BotApiMethod<?> process(Message message) {
+
     String chatId = String.valueOf(message.getChatId());
     SendMessage sendMessage = new SendMessage();
     sendMessage.setChatId(chatId);
