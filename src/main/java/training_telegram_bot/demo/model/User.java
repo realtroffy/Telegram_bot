@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -27,7 +29,9 @@ public class User {
     @Column(name = "LAST_NAME")
     private String lastName;
 
+    @CreationTimestamp
+    @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "MESSAGE_DATE")
-    private LocalDateTime messageDate;
+    @Column(name = "DATE_MESSAGE")
+    private Date dateMessage;
 }
