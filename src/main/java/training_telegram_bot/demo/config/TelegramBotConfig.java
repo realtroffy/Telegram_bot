@@ -8,10 +8,12 @@ import org.springframework.stereotype.Component;
 @Getter
 public class TelegramBotConfig {
 
-    @Value("${telegrambot.webHookPath}")
-    private String webHookPath;
-    @Value("${telegrambot.userName}")
-    private String userName;
-    @Value("${telegrambot.botToken}")
-    private String botToken;
+  @Value("${telegrambot.webHookPath}")
+  private String webHookPath;
+
+  @Value("${telegrambot.userName}")
+  private String userName;
+
+  @Value("${telegrambot.botToken}")
+  private String botToken;
 }

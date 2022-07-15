@@ -12,25 +12,23 @@ import java.io.IOException;
 @Service
 public class DocumentHtmlParserServiceImpl implements DocumentHtmlParserService {
 
-    @Value("${user.agent}")
-    private String userAgent;
-    @Value("${referrer}")
-    private String referrer;
+  @Value("${user.agent}")
+  private String userAgent;
 
-    @Override
-    public Document getDocumentFromUrl(String connectionUrl) {
-        try {
-            return Jsoup.connect(connectionUrl)
-                    .userAgent(userAgent)
-                    .referrer(referrer)
-                    .get();
-        } catch (IOException e) {
-            throw new RuntimeException("Can't open connection");
-        }
-    }
+  @Value("${referrer}")
+  private String referrer;
 
-    @Override
-    public Elements getElementsFromDocument(Document document, String cssQuery) {
-        return document.select(cssQuery);
+  @Override
+  public Document getDocumentFromUrl(String connectionUrl) {
+    try {
+      return Jsoup.connect(connectionUrl).userAgent(userAgent).referrer(referrer).get();
+    } catch (IOException e) {
+      throw new RuntimeException("Can't open connection");
     }
+  }
+
+  @Override
+  public Elements getElementsFromDocument(Document document, String cssQuery) {
+    return document.select(cssQuery);
+  }
 }

@@ -11,36 +11,35 @@ import java.util.List;
 @Component
 public class InlineKeyboardMaker {
 
-    public ReplyKeyboard getInlineKeyboard(){
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+  public ReplyKeyboard getInlineKeyboard() {
+    InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
-        InlineKeyboardButton buttonDate = new InlineKeyboardButton();
-        buttonDate.setText("попутка_Минск_Могилев");
-        InlineKeyboardButton buttonDescription = new InlineKeyboardButton();
-        buttonDescription.setText("попутка_Могилев_Минск");
-        InlineKeyboardButton buttonFreq = new InlineKeyboardButton();
-        buttonFreq.setText("вопрос_ЧГК");
+    InlineKeyboardButton buttonDate = new InlineKeyboardButton();
+    buttonDate.setText("попутка_Минск_Могилев");
+    InlineKeyboardButton buttonDescription = new InlineKeyboardButton();
+    buttonDescription.setText("попутка_Могилев_Минск");
+    InlineKeyboardButton buttonFreq = new InlineKeyboardButton();
+    buttonFreq.setText("вопрос_ЧГК");
 
-        buttonDate.setCallbackData("minsk_mogilev");
-        buttonDescription.setCallbackData("mogilev_minsk");
-        buttonFreq.setCallbackData("question");
+    buttonDate.setCallbackData("minsk_mogilev");
+    buttonDescription.setCallbackData("mogilev_minsk");
+    buttonFreq.setCallbackData("question");
 
-        List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
-        List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
-        List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
+    List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
+    List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
+    List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
 
+    keyboardButtonsRow1.add(buttonDate);
+    keyboardButtonsRow2.add(buttonDescription);
+    keyboardButtonsRow3.add(buttonFreq);
 
-        keyboardButtonsRow1.add(buttonDate);
-        keyboardButtonsRow2.add(buttonDescription);
-        keyboardButtonsRow3.add(buttonFreq);
+    List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+    rowList.add(keyboardButtonsRow1);
+    rowList.add(keyboardButtonsRow2);
+    rowList.add(keyboardButtonsRow3);
 
-        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-        rowList.add(keyboardButtonsRow1);
-        rowList.add(keyboardButtonsRow2);
-        rowList.add(keyboardButtonsRow3);
+    inlineKeyboardMarkup.setKeyboard(rowList);
 
-        inlineKeyboardMarkup.setKeyboard(rowList);
-
-        return inlineKeyboardMarkup;
-    }
+    return inlineKeyboardMarkup;
+  }
 }

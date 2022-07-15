@@ -15,16 +15,16 @@ import java.io.StringReader;
 @Service
 public class DocumentXmlParserServiceImpl implements DocumentXmlParserService {
 
-    @Override
-    public Node getNode(String stringXml, String tag) {
-        Document document = createDocumentFromString(stringXml);
-        NodeList questionElements = document.getDocumentElement().getElementsByTagName(tag);
-        return questionElements.item(0);
-    }
+  @Override
+  public Node getNode(String stringXml, String tag) {
+    Document document = createDocumentFromString(stringXml);
+    NodeList questionElements = document.getDocumentElement().getElementsByTagName(tag);
+    return questionElements.item(0);
+  }
 
-    @SneakyThrows
-    private Document createDocumentFromString(String stringXml) {
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        return builder.parse(new InputSource(new StringReader(stringXml)));
-    }
+  @SneakyThrows
+  private Document createDocumentFromString(String stringXml) {
+    DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    return builder.parse(new InputSource(new StringReader(stringXml)));
+  }
 }

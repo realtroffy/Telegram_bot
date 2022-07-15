@@ -5,7 +5,7 @@ import org.jsoup.select.Elements;
 
 public interface DocumentHtmlParserService {
 
-    Document getDocumentFromUrl(String connectionUrl);
+  Document getDocumentFromUrl(String connectionUrl);
 
-    Elements getElementsFromDocument(Document document, String cssQuery);
+  Elements getElementsFromDocument(Document document, String cssQuery);
 }

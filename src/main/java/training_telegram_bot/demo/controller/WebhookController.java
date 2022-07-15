@@ -14,23 +14,23 @@ import training_telegram_bot.demo.service.UserVisitService;
 @RestController
 public class WebhookController {
 
-    private final TelegramBot telegramBot;
-    private final UserVisitService userVisitService;
+  private final TelegramBot telegramBot;
+  private final UserVisitService userVisitService;
 
-    public WebhookController(TelegramBot telegramBot, UserVisitService userVisitService) {
-        this.telegramBot = telegramBot;
-        this.userVisitService = userVisitService;
-    }
+  public WebhookController(TelegramBot telegramBot, UserVisitService userVisitService) {
+    this.telegramBot = telegramBot;
+    this.userVisitService = userVisitService;
+  }
 
-    @PostMapping("/")
-    public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
-        User user = userVisitService.getUserFromUpdate(update);
-        userVisitService.saveToDataBase(user);
-        return telegramBot.onWebhookUpdateReceived(update);
-    }
+  @PostMapping("/")
+  public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
+    User user = userVisitService.getUserFromUpdate(update);
+    userVisitService.saveToDataBase(user);
+    return telegramBot.onWebhookUpdateReceived(update);
+  }
 
-    @GetMapping("/")
-    public ResponseEntity<String> getAnswerIfAppIsAvailable(){
-        return ResponseEntity.ok("App work fine");
-    }
+  @GetMapping("/")
+  public ResponseEntity<String> getAnswerIfAppIsAvailable() {
+    return ResponseEntity.ok("App work fine");
+  }
 }

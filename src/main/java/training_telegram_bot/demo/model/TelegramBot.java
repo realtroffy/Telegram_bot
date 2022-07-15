@@ -12,23 +12,24 @@ import org.telegram.telegrambots.starter.SpringWebhookBot;
 @Setter
 public class TelegramBot extends SpringWebhookBot {
 
-    private String botPath;
-    private String botUsername;
-    private String botToken;
-    private TelegramFacade telegramFacade;
+  private String botPath;
+  private String botUsername;
+  private String botToken;
+  private TelegramFacade telegramFacade;
 
-    public TelegramBot(TelegramFacade telegramFacade, SetWebhook setWebhook) {
-        super(setWebhook);
-        this.telegramFacade = telegramFacade;
-    }
+  public TelegramBot(TelegramFacade telegramFacade, SetWebhook setWebhook) {
+    super(setWebhook);
+    this.telegramFacade = telegramFacade;
+  }
 
-    public TelegramBot(TelegramFacade telegramFacade, DefaultBotOptions options, SetWebhook setWebhook) {
-        super(options, setWebhook);
-        this.telegramFacade = telegramFacade;
-    }
+  public TelegramBot(
+      TelegramFacade telegramFacade, DefaultBotOptions options, SetWebhook setWebhook) {
+    super(options, setWebhook);
+    this.telegramFacade = telegramFacade;
+  }
 
-    @Override
-    public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        return telegramFacade.handleUpdate(update);
-    }
+  @Override
+  public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
+    return telegramFacade.handleUpdate(update);
+  }
 }

@@ -4,5 +4,5 @@ import org.w3c.dom.Node;
 
 public interface DocumentXmlParserService {
 
-    Node getNode(String stringXml, String tag);
+  Node getNode(String stringXml, String tag);
 }

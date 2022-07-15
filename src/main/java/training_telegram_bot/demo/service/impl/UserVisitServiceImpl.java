@@ -11,22 +11,22 @@ import training_telegram_bot.demo.service.UserVisitService;
 @AllArgsConstructor
 public class UserVisitServiceImpl implements UserVisitService {
 
-    private final UserVisitRepository userVisitRepository;
+  private final UserVisitRepository userVisitRepository;
 
-    @Override
-    public void saveToDataBase(User user) {
-        userVisitRepository.save(user);
-    }
+  @Override
+  public void saveToDataBase(User user) {
+    userVisitRepository.save(user);
+  }
 
-    @Override
-    public User getUserFromUpdate(Update update) {
-        String firstName = update.getMessage().getFrom().getFirstName();
-        String lastName = update.getMessage().getFrom().getLastName();
-        String buttonName = update.getMessage().getText();
-        User user = new User();
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setButtonName(buttonName);
-        return user;
-    }
+  @Override
+  public User getUserFromUpdate(Update update) {
+    String firstName = update.getMessage().getFrom().getFirstName();
+    String lastName = update.getMessage().getFrom().getLastName();
+    String buttonName = update.getMessage().getText();
+    User user = new User();
+    user.setFirstName(firstName);
+    user.setLastName(lastName);
+    user.setButtonName(buttonName);
+    return user;
+  }
 }

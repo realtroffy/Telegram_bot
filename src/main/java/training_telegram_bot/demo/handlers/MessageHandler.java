@@ -29,10 +29,13 @@ public class MessageHandler {
   private static final String LINK_NAME_QUERY = "li[class=\"\"] > a[class=\"\"]";
   private static final String DRIVER_NAME_QUERY = "div.h5 > strong";
   private static final String ERROR_XML_MESSAGE = "Ошибка парсинга xml";
-  private static final String MINSK_MOGILEV_BUTTON_MESSAGE = "\uD83D\uDE98Попутка_Минск_Могилев\uD83D\uDE98";
-  private static final String MOGILEV_MINSK_BUTTON_MESSAGE = "\uD83D\uDE98Попутка_Могилев_Минск\uD83D\uDE98";
+  private static final String MINSK_MOGILEV_BUTTON_MESSAGE =
+      "\uD83D\uDE98Попутка_Минск_Могилев\uD83D\uDE98";
+  private static final String MOGILEV_MINSK_BUTTON_MESSAGE =
+      "\uD83D\uDE98Попутка_Могилев_Минск\uD83D\uDE98";
   private static final String QUESTION_BUTTON_MESSAGE = "❓Гробы_чгк⚰️. Нужно подождать 3-5 секунд";
-  private static final String NOT_FOUND_TRIP_MESSAGE = "Поездок не найдено. Возможно появятся позднее\uD83D\uDE09";
+  private static final String NOT_FOUND_TRIP_MESSAGE =
+      "Поездок не найдено. Возможно появятся позднее\uD83D\uDE09";
 
   private final ReplyKeyboardMaker replyKeyboardMaker;
   private final WebClientService webClientService;
