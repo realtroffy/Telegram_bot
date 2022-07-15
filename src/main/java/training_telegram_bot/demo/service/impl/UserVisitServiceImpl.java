@@ -22,9 +22,11 @@ public class UserVisitServiceImpl implements UserVisitService {
     public User getUserFromUpdate(Update update) {
         String firstName = update.getMessage().getFrom().getFirstName();
         String lastName = update.getMessage().getFrom().getLastName();
+        String buttonName = update.getMessage().getText();
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setButtonName(buttonName);
         return user;
     }
 }

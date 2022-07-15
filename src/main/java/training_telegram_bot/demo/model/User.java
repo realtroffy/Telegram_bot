@@ -34,4 +34,7 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATE_MESSAGE")
     private Date dateMessage;
+
+    @Column(name = "BUTTON_NAME")
+    private String buttonName;
 }
