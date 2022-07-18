@@ -1,9 +1,6 @@
 package training_telegram_bot.demo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -11,12 +8,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USER_WRITE_BOT")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+@ToString
+public class UserWriteBot {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

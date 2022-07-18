@@ -1,11 +1,15 @@
 package training_telegram_bot.demo.service;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
-import training_telegram_bot.demo.model.User;
+import training_telegram_bot.demo.model.UserWriteBot;
+
+import java.util.List;
 
 public interface UserVisitService {
 
-  void saveToDataBase(User user);
+  void saveToDataBase(UserWriteBot userWriteBot);
 
-  User getUserFromUpdate(Update update);
+  UserWriteBot getUserFromUpdate(Update update);
+
+  List<UserWriteBot> getAllUsers();
 }
