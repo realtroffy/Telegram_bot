@@ -1,5 +1,6 @@
 package training_telegram_bot.demo.keybord;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@ConditionalOnProperty(prefix = "inline", name = "keyboard", havingValue = "on")
 public class InlineKeyboardMaker {
 
   public ReplyKeyboard getInlineKeyboard() {

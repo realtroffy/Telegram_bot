@@ -12,21 +12,21 @@ import training_telegram_bot.demo.model.TelegramBot;
 import training_telegram_bot.demo.model.UserWriteBot;
 import training_telegram_bot.demo.service.UserVisitService;
 
-@RestController
+@RestController("/")
 @AllArgsConstructor
 public class WebhookController {
 
   private final TelegramBot telegramBot;
   private final UserVisitService userVisitService;
 
-  @PostMapping("/")
+  @PostMapping
   public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
     UserWriteBot userWriteBot = userVisitService.getUserFromUpdate(update);
     userVisitService.saveToDataBase(userWriteBot);
     return telegramBot.onWebhookUpdateReceived(update);
   }
 
-  @GetMapping("/")
+  @GetMapping
   public ResponseEntity<String> getAnswerIfAppIsAvailable() {
     return ResponseEntity.ok("App work fine");
   }

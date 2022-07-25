@@ -7,9 +7,6 @@ import training_telegram_bot.demo.model.UserWriteBot;
 import training_telegram_bot.demo.repository.UserVisitRepository;
 import training_telegram_bot.demo.service.UserVisitService;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class UserVisitServiceImpl implements UserVisitService {
@@ -31,12 +28,5 @@ public class UserVisitServiceImpl implements UserVisitService {
     userWriteBot.setLastName(lastName);
     userWriteBot.setButtonName(buttonName);
     return userWriteBot;
-  }
-
-  @Override
-  public List<UserWriteBot> getAllUsers() {
-    List<UserWriteBot> userWriteBotList = new ArrayList<>();
-    userVisitRepository.findAll().forEach(userWriteBotList::add);
-    return userWriteBotList;
   }
 }
