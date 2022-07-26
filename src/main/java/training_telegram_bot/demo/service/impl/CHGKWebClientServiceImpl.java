@@ -9,14 +9,14 @@ import training_telegram_bot.demo.service.WebClientService;
 import javax.annotation.PostConstruct;
 
 @Service
-public class WebClientServiceImpl implements WebClientService {
+public class CHGKWebClientServiceImpl implements WebClientService {
 
   @Value("${question.url}")
   private String questionUrl;
 
   private final WebClient webClient;
 
-  public WebClientServiceImpl(WebClient webClient) {
+  public CHGKWebClientServiceImpl(WebClient webClient) {
     this.webClient = webClient;
   }
 

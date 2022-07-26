@@ -21,7 +21,7 @@ public class DocumentHtmlParserServiceImpl implements DocumentHtmlParserService 
   @Override
   public Document getDocumentFromUrl(String connectionUrl) {
     try {
-      return Jsoup.connect(connectionUrl).userAgent(userAgent).referrer(referrer).get();
+      return Jsoup.connect(connectionUrl).get();
     } catch (IOException e) {
       throw new RuntimeException("Can't open connection");
     }
