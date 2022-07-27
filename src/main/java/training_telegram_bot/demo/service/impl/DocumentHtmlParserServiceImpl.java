@@ -1,13 +1,11 @@
 package training_telegram_bot.demo.service.impl;
 
-import org.jsoup.Jsoup;
+import lombok.SneakyThrows;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import training_telegram_bot.demo.service.DocumentHtmlParserService;
-
-import java.io.IOException;
 
 @Service
 public class DocumentHtmlParserServiceImpl implements DocumentHtmlParserService {
@@ -18,13 +16,16 @@ public class DocumentHtmlParserServiceImpl implements DocumentHtmlParserService 
   @Value("${referrer}")
   private String referrer;
 
+  private final SSLHelper sslHelper;
+
+  public DocumentHtmlParserServiceImpl(SSLHelper sslHelper) {
+    this.sslHelper = sslHelper;
+  }
+
   @Override
+  @SneakyThrows
   public Document getDocumentFromUrl(String connectionUrl) {
-    try {
-      return Jsoup.connect(connectionUrl).get();
-    } catch (IOException e) {
-      throw new RuntimeException("Can't open connection");
-    }
+    return sslHelper.getConnection(connectionUrl).get();
   }
 
   @Override

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class UserCredential {
+public class UserCredential{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

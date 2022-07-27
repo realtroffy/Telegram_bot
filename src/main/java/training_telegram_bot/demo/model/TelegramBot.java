@@ -8,7 +8,6 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
-import training_telegram_bot.demo.service.TelegramFacade;
 
 @Getter
 @Setter
@@ -24,15 +23,12 @@ public class TelegramBot extends SpringWebhookBot {
   @Value("${telegrambot.botToken}")
   private String botToken;
 
-  private final TelegramFacade telegramFacade;
-
-  public TelegramBot(SetWebhook setWebhook, TelegramFacade telegramFacade) {
+  public TelegramBot(SetWebhook setWebhook) {
     super(setWebhook);
-    this.telegramFacade = telegramFacade;
   }
 
   @Override
   public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-    return telegramFacade.handleUpdate(update);
+    return null;
   }
 }

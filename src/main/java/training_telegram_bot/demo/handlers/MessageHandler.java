@@ -3,10 +3,10 @@ package training_telegram_bot.demo.handlers;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import training_telegram_bot.demo.keybord.ReplyKeyboardMaker;
+import training_telegram_bot.demo.model.TelegramBot;
 import training_telegram_bot.demo.parser.htmlImpl.GoCarHtmlParser;
 import training_telegram_bot.demo.parser.htmlImpl.KFCHtmlParser;
 import training_telegram_bot.demo.parser.xmlImpl.CHGKXmlParser;
@@ -25,8 +25,7 @@ public class MessageHandler {
       "\uD83D\uDE98Попутка_Могилев_Минск\uD83D\uDE98";
   public static final String QUESTION_BUTTON_MESSAGE = "❓Гробы_чгк⚰️. Нужно подождать 3-5 секунд";
   public static final String KFC_BUTTON_MESSAGE = "KFC купоны";
-  public static final String KFC_URL_PROMO =
-      "https://www.kfc.by/promo/182";
+  public static final String KFC_URL_PROMO = "https://www.kfc.by/promo/182";
   public static final String DEFAULT_BOT_MESSAGE =
       "Пожалуйста, воспользуйтесь кнопками для ввода команд";
 
@@ -34,39 +33,46 @@ public class MessageHandler {
   private final GoCarHtmlParser goCarHtmlParser;
   private final CHGKXmlParser chgkXmlParser;
   private final KFCHtmlParser kfcHtmlParser;
+  private final TelegramBot telegramBot;
 
   @SneakyThrows
-  public BotApiMethod<Message> process(Message message) {
+  public Message process(Message message) {
 
-    String chatId = String.valueOf(message.getChatId());
+    Long chatId = message.getChatId();
     SendMessage sendMessage = new SendMessage();
     sendMessage.setChatId(chatId);
 
     String inputMessage = message.getText();
 
     sendMessage.enableHtml(true);
+    sendMessage.disableWebPagePreview();
     sendMessage.setReplyMarkup(replyKeyboardMaker.getMainMenuKeyboard());
 
     switch (inputMessage) {
       case "/start":
         sendMessage.setText("Hellova, " + message.getFrom().getFirstName());
+        telegramBot.execute(sendMessage);
         break;
       case MINSK_MOGILEV_BUTTON_MESSAGE:
         sendMessage.setText(goCarHtmlParser.getMessageFromDocument(MINSK_MOGILEV_URL));
+        telegramBot.execute(sendMessage);
         break;
       case MOGILEV_MINSK_BUTTON_MESSAGE:
         sendMessage.setText(goCarHtmlParser.getMessageFromDocument(MOGILEV_MINSK_URL));
+        telegramBot.execute(sendMessage);
         break;
       case QUESTION_BUTTON_MESSAGE:
         String messageFromXml = chgkXmlParser.processQuestionButton();
         sendMessage.setText(messageFromXml);
+        telegramBot.execute(sendMessage);
         break;
-      /*case KFC_BUTTON_MESSAGE:
-        sendMessage.setText(kfcHtmlParser.getMessageFromDocument(KFC_URL_PROMO));
-        break;*/
+      case KFC_BUTTON_MESSAGE:
+        telegramBot.execute(kfcHtmlParser.getMessageFromDocument(KFC_URL_PROMO, chatId));
+        break;
       default:
         sendMessage.setText(DEFAULT_BOT_MESSAGE);
+        telegramBot.execute(sendMessage);
     }
-    return sendMessage;
+    return null;
   }
 }

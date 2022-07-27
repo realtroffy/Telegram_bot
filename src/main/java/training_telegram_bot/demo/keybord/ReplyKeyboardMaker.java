@@ -24,7 +24,7 @@ public class ReplyKeyboardMaker {
 
     KeyboardRow row2 = new KeyboardRow();
     row2.add(QUESTION_BUTTON_MESSAGE);
-    //row2.add(KFC_BUTTON_MESSAGE);
+    row2.add(KFC_BUTTON_MESSAGE);
 
     List<KeyboardRow> keyboard = new ArrayList<>();
     keyboard.add(row1);
