@@ -100,6 +100,10 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <executable>true</executable>
+                    <jvmArguments>
+                        -Xmx200m
+                    </jvmArguments>
                 </configuration>
                 <executions>
                     <execution>
@@ -111,5 +115,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
