@@ -21,7 +21,6 @@ public class CHGKWebClientServiceImpl implements WebClientService {
   }
 
   @Override
-  @PostConstruct
   public ResponseEntity<String> getResponseEntity() {
     return webClient.get().uri(questionUrl).retrieve().toEntity(String.class).block();
   }
