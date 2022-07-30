@@ -1,6 +1,8 @@
 package training_telegram_bot.demo.parser;
 
+import java.util.Map;
+
 public interface XmlParser {
 
-    String processQuestionButton();
+    Map<String, Object> processQuestionButton();
 }

@@ -4,12 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import training_telegram_bot.demo.keybord.ReplyKeyboardMaker;
 import training_telegram_bot.demo.model.TelegramBot;
 import training_telegram_bot.demo.parser.htmlImpl.GoCarHtmlParser;
 import training_telegram_bot.demo.parser.htmlImpl.KFCHtmlParser;
 import training_telegram_bot.demo.parser.xmlImpl.CHGKXmlParser;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +33,8 @@ public class MessageHandler {
   public static final String KFC_URL_PROMO = "https://www.kfc.by/promo/182";
   public static final String DEFAULT_BOT_MESSAGE =
       "Пожалуйста, воспользуйтесь кнопками для ввода команд";
+  public static final String KEY_QUESTION_COMPLETE = "completeQuestion";
+  public static final String KEY_PICTURE_QUESTION_URLS = "pictureUrls";
 
   private final ReplyKeyboardMaker replyKeyboardMaker;
   private final GoCarHtmlParser goCarHtmlParser;
@@ -43,9 +50,8 @@ public class MessageHandler {
     sendMessage.setChatId(chatId);
 
     String inputMessage = message.getText();
-
-    sendMessage.enableHtml(true);
     sendMessage.disableWebPagePreview();
+    sendMessage.enableHtml(true);
     sendMessage.setReplyMarkup(replyKeyboardMaker.getMainMenuKeyboard());
 
     switch (inputMessage) {
@@ -62,17 +68,33 @@ public class MessageHandler {
         telegramBot.execute(sendMessage);
         break;
       case QUESTION_BUTTON_MESSAGE:
-        String messageFromXml = chgkXmlParser.processQuestionButton();
+        Map<String, Object> questionMap = chgkXmlParser.processQuestionButton();
+        String messageFromXml = (String) questionMap.get(KEY_QUESTION_COMPLETE);
+        List<String> chgkPictureUrls = (List<String>) questionMap.get(KEY_PICTURE_QUESTION_URLS);
         sendMessage.setText(messageFromXml);
         telegramBot.execute(sendMessage);
+        for (String pictureUrl : chgkPictureUrls) {
+          executePhoto(chatId, pictureUrl);
+        }
         break;
       case KFC_BUTTON_MESSAGE:
-        telegramBot.execute(kfcHtmlParser.getMessageFromDocument(KFC_URL_PROMO, chatId));
+        List<String> kfcPictureUrls = kfcHtmlParser.getMessageFromDocument(KFC_URL_PROMO);
+        for (String pictureUrl : kfcPictureUrls) {
+          executePhoto(chatId, pictureUrl);
+        }
         break;
       default:
         sendMessage.setText(DEFAULT_BOT_MESSAGE);
         telegramBot.execute(sendMessage);
     }
     return null;
+  }
+
+  @SneakyThrows
+  private void executePhoto(Long chatId, String pictureUrl) {
+    SendPhoto sendPhoto = new SendPhoto();
+    sendPhoto.setChatId(chatId);
+    sendPhoto.setPhoto(new InputFile(pictureUrl));
+    telegramBot.execute(sendPhoto);
   }
 }
