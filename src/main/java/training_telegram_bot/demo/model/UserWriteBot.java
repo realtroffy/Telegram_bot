@@ -17,7 +17,8 @@ import java.util.Date;
 public class UserWriteBot {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @SequenceGenerator(name = "generator", sequenceName = "id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   @Column(name = "ID")
   private Long id;
 

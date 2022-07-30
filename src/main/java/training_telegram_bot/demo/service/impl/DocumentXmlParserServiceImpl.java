@@ -24,7 +24,9 @@ public class DocumentXmlParserServiceImpl implements DocumentXmlParserService {
 
   @SneakyThrows
   private Document createDocumentFromString(String stringXml) {
-    DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+    DocumentBuilder builder = factory.newDocumentBuilder();
     return builder.parse(new InputSource(new StringReader(stringXml)));
   }
 }
