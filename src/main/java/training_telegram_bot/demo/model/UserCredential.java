@@ -18,9 +18,9 @@ public class UserCredential{
   @Column(name = "ID")
   private Long id;
 
-  @Column(name = "USERNAME")
+  @Column(name = "USERNAME", length = 1024)
   private String username;
 
-  @Column(name = "PASSSWORD")
+  @Column(name = "PASSSWORD", length = 1024)
   private String password;
 }
