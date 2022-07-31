@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import training_telegram_bot.demo.service.WebClientService;
 
-import javax.annotation.PostConstruct;
-
 @Service
 public class CHGKWebClientServiceImpl implements WebClientService {
 
