@@ -28,7 +28,7 @@ import java.time.ZoneId;
 public class UserWriteBot {
 
   @Id
-  @SequenceGenerator(name = "generator", sequenceName = "id_seq", allocationSize = 1)
+  @SequenceGenerator(name = "generator", sequenceName = "id_seq")
   @GeneratedValue(generator = "generator", strategy = GenerationType.SEQUENCE)
   @Column(name = "ID")
   private Long id;
