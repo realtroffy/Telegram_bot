@@ -1,10 +1,12 @@
 package training_telegram_bot.demo.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import training_telegram_bot.demo.handlers.CallBackQueryHandler;
 import training_telegram_bot.demo.handlers.MessageHandler;
 
@@ -22,9 +24,8 @@ public class TelegramFacade {
     } else {
       Message message = update.getMessage();
       if (message != null && message.hasText()) {
-        return messageHandler.process(message);
-      }
+          return messageHandler.process(message);
     }
     return null;
   }
-}
+}}

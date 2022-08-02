@@ -1,9 +1,11 @@
 package training_telegram_bot.demo.parser.xmlImpl;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Node;
+import training_telegram_bot.demo.error.GetBodyFromStringXmlException;
 import training_telegram_bot.demo.parser.XmlParser;
 import training_telegram_bot.demo.service.DocumentXmlParserService;
 import training_telegram_bot.demo.service.WebClientService;
@@ -17,6 +19,7 @@ import java.util.regex.Pattern;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class CHGKXmlParser implements XmlParser {
 
   public static final String QUESTION = "Question";
@@ -37,7 +40,8 @@ public class CHGKXmlParser implements XmlParser {
 
       String responseXml = stringQuestionXml.getBody();
       if (responseXml == null || responseXml.isEmpty()) {
-        throw new RuntimeException(ERROR_XML_MESSAGE);
+        log.error(ERROR_XML_MESSAGE);
+        throw new GetBodyFromStringXmlException(ERROR_XML_MESSAGE);
       }
 
       String withoutNewLine = responseXml.replace("\n", " ");

@@ -1,14 +1,19 @@
 package training_telegram_bot.demo.service.impl;
 
-import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import training_telegram_bot.demo.error.GetConnectionException;
 import training_telegram_bot.demo.service.DocumentHtmlParserService;
 
+import java.io.IOException;
+
 @Service
+@Slf4j
 public class DocumentHtmlParserServiceImpl implements DocumentHtmlParserService {
+
 
   @Value("${user.agent}")
   private String userAgent;
@@ -23,9 +28,13 @@ public class DocumentHtmlParserServiceImpl implements DocumentHtmlParserService 
   }
 
   @Override
-  @SneakyThrows
   public Document getDocumentFromUrl(String connectionUrl) {
-    return sslHelper.getConnection(connectionUrl).get();
+    try {
+      return sslHelper.getConnection(connectionUrl).get();
+    } catch (IOException e) {
+      log.error("Exception while get document from connection", e);
+      throw new GetConnectionException("Exception while get document from connection");
+    }
   }
 
   @Override

@@ -2,6 +2,7 @@ package training_telegram_bot.demo.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import training_telegram_bot.demo.model.UserWriteBot;
 import training_telegram_bot.demo.repository.UserVisitRepository;
@@ -14,6 +15,7 @@ public class UserVisitServiceImpl implements UserVisitService {
   private final UserVisitRepository userVisitRepository;
 
   @Override
+  @Transactional
   public void saveToDataBase(UserWriteBot userWriteBot) {
     userVisitRepository.save(userWriteBot);
   }

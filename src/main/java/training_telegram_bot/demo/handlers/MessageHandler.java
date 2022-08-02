@@ -1,12 +1,14 @@
 package training_telegram_bot.demo.handlers;
 
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import training_telegram_bot.demo.error.TelegramExecuteMessageException;
 import training_telegram_bot.demo.keybord.ReplyKeyboardMaker;
 import training_telegram_bot.demo.model.TelegramBot;
 import training_telegram_bot.demo.parser.htmlImpl.GoCarHtmlParser;
@@ -18,6 +20,7 @@ import java.util.Map;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class MessageHandler {
 
   public static final String MINSK_MOGILEV_URL =
@@ -42,7 +45,6 @@ public class MessageHandler {
   private final KFCHtmlParser kfcHtmlParser;
   private final TelegramBot telegramBot;
 
-  @SneakyThrows
   public Message process(Message message) {
 
     Long chatId = message.getChatId();
@@ -57,24 +59,48 @@ public class MessageHandler {
     switch (inputMessage) {
       case "/start":
         sendMessage.setText("Hellova, " + message.getFrom().getFirstName());
-        telegramBot.execute(sendMessage);
+        try {
+          telegramBot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+          log.error("Exception during execute /start in MessageHandler", e);
+          throw new TelegramExecuteMessageException(
+              "Error during execute /start in MessageHandler");
+        }
         break;
       case MINSK_MOGILEV_BUTTON_MESSAGE:
         sendMessage.setText(goCarHtmlParser.getMessageFromDocument(MINSK_MOGILEV_URL));
-        telegramBot.execute(sendMessage);
+        try {
+          telegramBot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+          log.error("Exception during execute MINSK_MOGILEV_BUTTON_MESSAGE in MessageHandler", e);
+          throw new TelegramExecuteMessageException(
+              "Error during execute MINSK_MOGILEV_BUTTON_MESSAGE in MessageHandler");
+        }
         break;
       case MOGILEV_MINSK_BUTTON_MESSAGE:
         sendMessage.setText(goCarHtmlParser.getMessageFromDocument(MOGILEV_MINSK_URL));
-        telegramBot.execute(sendMessage);
+        try {
+          telegramBot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+          log.error("Exception during execute MOGILEV_MINSK_BUTTON_MESSAGE in MessageHandler", e);
+          throw new TelegramExecuteMessageException(
+              "Error during execute MOGILEV_MINSK_BUTTON_MESSAGE in MessageHandler");
+        }
         break;
       case QUESTION_BUTTON_MESSAGE:
         Map<String, Object> questionMap = chgkXmlParser.processQuestionButton();
         String messageFromXml = (String) questionMap.get(KEY_QUESTION_COMPLETE);
         List<String> chgkPictureUrls = (List<String>) questionMap.get(KEY_PICTURE_QUESTION_URLS);
         sendMessage.setText(messageFromXml);
-        telegramBot.execute(sendMessage);
-        for (String pictureUrl : chgkPictureUrls) {
-          executePhoto(chatId, pictureUrl);
+        try {
+          telegramBot.execute(sendMessage);
+          for (String pictureUrl : chgkPictureUrls) {
+            executePhoto(chatId, pictureUrl);
+          }
+        } catch (TelegramApiException e) {
+          log.error("Exception during execute QUESTION_BUTTON_MESSAGE in MessageHandler", e);
+          throw new TelegramExecuteMessageException(
+              "Error during execute QUESTION_BUTTON_MESSAGE in MessageHandler");
         }
         break;
       case KFC_BUTTON_MESSAGE:
@@ -85,16 +111,27 @@ public class MessageHandler {
         break;
       default:
         sendMessage.setText(DEFAULT_BOT_MESSAGE);
-        telegramBot.execute(sendMessage);
+        try {
+          telegramBot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+          log.error("Exception during execute DEFAULT_BOT_MESSAGE in MessageHandler", e);
+          throw new TelegramExecuteMessageException(
+              "Error during execute DEFAULT_BOT_MESSAGE in MessageHandler");
+        }
     }
     return null;
   }
 
-  @SneakyThrows
   private void executePhoto(Long chatId, String pictureUrl) {
     SendPhoto sendPhoto = new SendPhoto();
     sendPhoto.setChatId(chatId);
     sendPhoto.setPhoto(new InputFile(pictureUrl));
-    telegramBot.execute(sendPhoto);
+    try {
+      telegramBot.execute(sendPhoto);
+    } catch (TelegramApiException e) {
+      log.error("Exception during execute KFC_BUTTON_MESSAGE in MessageHandler", e);
+      throw new TelegramExecuteMessageException(
+          "Error during execute KFC_BUTTON_MESSAGE in MessageHandler");
+    }
   }
 }

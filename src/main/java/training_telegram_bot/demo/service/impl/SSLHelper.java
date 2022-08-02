@@ -1,6 +1,5 @@
 package training_telegram_bot.demo.service.impl;
 
-import lombok.SneakyThrows;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.springframework.stereotype.Service;
@@ -15,10 +14,9 @@ import java.security.cert.X509Certificate;
 public class SSLHelper {
 
   public Connection getConnection(String url) {
-    return Jsoup.connect(url).sslSocketFactory(socketFactory());
+    return Jsoup.connect(url);//.sslSocketFactory(socketFactory());
   }
 
-  @SneakyThrows
   private SSLSocketFactory socketFactory() {
     TrustManager[] trustAllCerts =
         new TrustManager[] {
@@ -27,13 +25,21 @@ public class SSLHelper {
               return new X509Certificate[0];
             }
 
-            public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+              /* No need implement */
+            }
 
-            public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                /* No need implement */
+            }
           }
         };
+    try{
     SSLContext sslContext = SSLContext.getInstance("SSL");
     sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
     return sslContext.getSocketFactory();
+  } catch (Exception e){
+        throw new RuntimeException(e);
+    }
   }
 }
