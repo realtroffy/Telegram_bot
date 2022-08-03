@@ -8,4 +8,4 @@ databaseChangeLog:
   - include:
       file: db/changelog/changeset/rename-id_seq.yaml
   - include:
-      file: db/changelog/changeset/rename-id_seq_to_hibernate_sequance.yaml
+      file: db/changelog/changeset/rename-id_seq_to_hibernate_sequence.yaml
