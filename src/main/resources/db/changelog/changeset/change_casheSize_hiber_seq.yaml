@@ -4,7 +4,7 @@ databaseChangeLog:
       author: artur
       changes:
         - alterSequence:
-            cacheSize: 1
+            cacheSize: 50
             cycle: false
             dataType: bigint
             incrementBy: 1
