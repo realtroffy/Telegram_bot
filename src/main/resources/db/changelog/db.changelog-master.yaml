@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/changeset/create-usercredential.yaml
   - include:
       file: db/changelog/changeset/create-userwritebot.yaml
+  - include:
+      file: db/changelog/changeset/create-hibernate-seq.yaml
