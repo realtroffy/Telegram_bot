@@ -15,7 +15,7 @@ public class UserCredential{
 
   @Id
   @SequenceGenerator(name = "generator_user_credential", sequenceName = "user_credential_sequence")
-  @GeneratedValue(generator = "generator_user_credential", strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(generator = "generator_user_credential")
   @Column(name = "ID")
   private Long id;
 

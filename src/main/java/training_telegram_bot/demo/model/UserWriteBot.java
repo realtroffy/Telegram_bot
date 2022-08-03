@@ -10,7 +10,6 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
@@ -29,7 +28,7 @@ public class UserWriteBot {
 
   @Id
   @SequenceGenerator(name = "generator_user_write_bot", sequenceName = "user_write_bot_sequence")
-  @GeneratedValue(generator = "generator_user_write_bot", strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(generator = "generator_user_write_bot")
   @Column(name = "ID")
   private Long id;
 
