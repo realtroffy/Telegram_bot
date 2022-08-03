@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: change-userwritebot
+      author: artur
+      changes:
+        - col
+            tableName: USER_WRITE_BOT
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
