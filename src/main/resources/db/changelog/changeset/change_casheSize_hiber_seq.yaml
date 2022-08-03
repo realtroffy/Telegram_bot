@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: change_casheSize_hiber_seq
+      author: artur
+      changes:
+        - alterSequence:
+            sequenceName: hibernate-sequence
+            cacheSize: 50

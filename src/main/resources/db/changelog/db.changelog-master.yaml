@@ -9,3 +9,5 @@ databaseChangeLog:
       file: db/changelog/changeset/rename-id_seq.yaml
   - include:
       file: db/changelog/changeset/rename-id_seq_to_hibernate_sequence.yaml
+  - include:
+      file: db/changelog/changeset/change_casheSize-hiber_seq.yaml
