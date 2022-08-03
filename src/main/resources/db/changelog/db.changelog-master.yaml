@@ -7,5 +7,5 @@ databaseChangeLog:
       file: db/changelog/changeset/create-id_seq.yaml
   - include:
       file: db/changelog/changeset/rename-id_seq.yaml
-  -include:
+  - include:
       file: db/changelog/changeset/rename-id_seq_to_hibernate_sequance.yaml
