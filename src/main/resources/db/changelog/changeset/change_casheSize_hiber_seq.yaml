@@ -4,5 +4,11 @@ databaseChangeLog:
       author: artur
       changes:
         - alterSequence:
-            sequenceName: hibernate-sequence
-            cacheSize: 50
+            cacheSize: 1
+            cycle: false
+            dataType: bigint
+            incrementBy: 1
+            maxValue: 9223372036854775807
+            minValue: 1
+            sequenceName: hibernate_sequence
+            startValue: 1
