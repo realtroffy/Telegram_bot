@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-userwritebot
+      author: artur
+      changes:
+        - createTable:
+            tableName: USER_WRITE_BOT
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: FIRST_NAME
+                  type: varchar(1024)
+              - column:
+                  name: LAST_NAME
+                  type: varchar(1024)
+              - column:
+                  name: DATE_MESSAGE
+                  type: timestamp without time zone
+              - column:
+                  name: BUTTON_NAME
+                  type: varchar(1024)
