@@ -3,11 +3,3 @@ databaseChangeLog:
       file: db/changelog/changeset/create-usercredential.yaml
   - include:
       file: db/changelog/changeset/create-userwritebot.yaml
-  - include:
-      file: db/changelog/changeset/create-id_seq.yaml
-  - include:
-      file: db/changelog/changeset/rename-id_seq.yaml
-  - include:
-      file: db/changelog/changeset/rename-id_seq_to_hibernate_sequence.yaml
-  - include:
-      file: db/changelog/changeset/change_casheSize_hiber_seq.yaml
