@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: rename-id_seq
+      author: artur
+      changes:
+        - renameSequence:
+            oldSequenceName: id_seq
+            newSequenceName: hibernate_seq
