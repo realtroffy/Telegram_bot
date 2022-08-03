@@ -7,7 +7,7 @@ databaseChangeLog:
             cacheSize: 50
             cycle: false
             dataType: bigint
-            incrementBy: 1
+            incrementBy: 50
             maxValue: 9223372036854775807
             minValue: 1
             schemaName: public
