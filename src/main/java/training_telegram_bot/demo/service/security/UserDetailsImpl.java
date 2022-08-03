@@ -1,4 +1,4 @@
-package training_telegram_bot.demo.service.impl;
+package training_telegram_bot.demo.service.security;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

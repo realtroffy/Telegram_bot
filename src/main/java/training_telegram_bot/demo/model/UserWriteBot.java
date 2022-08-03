@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -28,8 +27,7 @@ import java.time.ZoneId;
 public class UserWriteBot {
 
   @Id
-  @SequenceGenerator(name = "generator", sequenceName = "id_seq")
-  @GeneratedValue(generator = "generator", strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   @Column(name = "ID")
   private Long id;
 

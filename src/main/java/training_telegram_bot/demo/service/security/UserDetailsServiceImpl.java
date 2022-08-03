@@ -1,4 +1,4 @@
-package training_telegram_bot.demo.service.impl;
+package training_telegram_bot.demo.service.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,8 +21,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     Optional<UserCredential> userCredential =
         userCredentialRepository.findUserCredentialByUsername(username);
 
-    if (userCredential.isEmpty()) throw new UsernameNotFoundException("User not found");
-
+    if (userCredential.isEmpty()) {
+      throw new UsernameNotFoundException("User not found");
+    }
     return new UserDetailsImpl(userCredential.get());
   }
 }
