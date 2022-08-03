@@ -3,3 +3,7 @@ databaseChangeLog:
       file: db/changelog/changeset/create-usercredential.yaml
   - include:
       file: db/changelog/changeset/create-userwritebot.yaml
+  - include:
+      file: db/changelog/changeset/create-user_credential_sequence.yaml
+  - include:
+      file: db/changelog/changeset/create-user_write_bot_sequence.yaml
