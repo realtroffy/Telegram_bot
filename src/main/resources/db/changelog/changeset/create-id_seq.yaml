@@ -10,5 +10,5 @@ databaseChangeLog:
             incrementBy: 1
             maxValue: 9223372036854775807
             minValue: 1
-            sequenceName: id_sequence
+            sequenceName: id_seq
             startValue: 1
