@@ -14,8 +14,7 @@ import javax.persistence.*;
 public class UserCredential{
 
   @Id
-  @SequenceGenerator(name = "generator_user_credential", sequenceName = "user_credential_sequence", allocationSize = 50)
-  @GeneratedValue(generator = "generator_user_credential")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   @Column(name = "ID")
   private Long id;
 
