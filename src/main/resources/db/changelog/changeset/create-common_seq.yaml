@@ -1,14 +1,14 @@
 databaseChangeLog:
   - changeSet:
-      id: user_cred_id_seq
+      id: common_seq
       author: artur
       changes:
         - createSequence:
             cacheSize: 1
             cycle: false
             dataType: bigint
-            incrementBy: 1
+            incrementBy: 3
             maxValue: 9223372036854775807
             minValue: 1
-            sequenceName: user_cred_id_seq
+            sequenceName: common_sequence
             startValue: 1

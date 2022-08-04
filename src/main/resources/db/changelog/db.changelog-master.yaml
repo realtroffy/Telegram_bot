@@ -4,6 +4,4 @@ databaseChangeLog:
   - include:
       file: db/changelog/changeset/create-userwritebot.yaml
   - include:
-      file: db/changelog/changeset/create-user_cred_id_seq.yaml
-  - include:
-      file: db/changelog/changeset/create-user_write_bot_id_seq.yaml
+      file: db/changelog/changeset/create-common_seq.yaml

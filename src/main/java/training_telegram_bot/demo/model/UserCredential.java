@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "USER_CREDENTIAL")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,14 +14,14 @@ import javax.persistence.*;
 public class UserCredential{
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_credential_id_generator")
-  @SequenceGenerator(name = "user_credential_id_generator", sequenceName = "user_cred_id_seq", allocationSize = 1)
-  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_cred_generator")
+  @SequenceGenerator(name = "user_cred_generator", sequenceName = "common_sequence", allocationSize = 3)
+  @Column
   private Long id;
 
-  @Column(name = "USERNAME", length = 1024)
+  @Column
   private String username;
 
-  @Column(name = "PASSSWORD", length = 1024)
+  @Column
   private String password;
 }

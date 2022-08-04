@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Entity
-@Table(name = "USER_WRITE_BOT")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -28,22 +28,22 @@ import java.time.ZoneId;
 public class UserWriteBot {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_write_bot_id_generator")
-  @SequenceGenerator(name = "user_write_bot_id_generator", sequenceName = "user_write_bot_id_seq", allocationSize = 1)
-  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_write_generator")
+  @SequenceGenerator(name = "user_write_generator", sequenceName = "common_sequence", allocationSize = 3)
+  @Column
   private Long id;
 
-  @Column(name = "FIRST_NAME", length = 1024)
+  @Column
   private String firstName;
 
-  @Column(name = "LAST_NAME", length = 1024)
+  @Column
   private String lastName;
 
   @CreatedDate
-  @Column(name = "DATE_MESSAGE", nullable = false, updatable = false)
+  @Column
   private LocalDateTime dateMessage;
 
-  @Column(name = "BUTTON_NAME", length = 1024)
+  @Column
   private String buttonName;
 
   @PrePersist
