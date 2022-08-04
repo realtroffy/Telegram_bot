@@ -12,11 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 @Entity
 @Table(name = "USER_WRITE_BOT")
@@ -45,9 +43,4 @@ public class UserWriteBot {
 
   @Column(name = "BUTTON_NAME", length = 1024)
   private String buttonName;
-
-  @PrePersist
-  public void onCreate() {
-    this.dateMessage = LocalDateTime.now(ZoneId.of("UTC+3"));
-  }
 }
