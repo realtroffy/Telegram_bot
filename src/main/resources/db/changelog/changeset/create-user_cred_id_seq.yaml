@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create-hibernate-seq
+      id: user_cred_id_seq
       author: artur
       changes:
         - createSequence:
@@ -10,5 +10,5 @@ databaseChangeLog:
             incrementBy: 1
             maxValue: 9223372036854775807
             minValue: 1
-            sequenceName: hibernate_sequence
+            sequenceName: user_cred_id_seq
             startValue: 1
