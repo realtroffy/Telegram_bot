@@ -39,7 +39,7 @@ public class UserWriteBot {
 
   @CreatedDate
   @Column(name = "DATE_MESSAGE", nullable = false, updatable = false)
-  private LocalDateTime dateMessage;
+  private LocalDateTime dateMessage = LocalDateTime.now();
 
   @Column(name = "BUTTON_NAME", length = 1024)
   private String buttonName;
