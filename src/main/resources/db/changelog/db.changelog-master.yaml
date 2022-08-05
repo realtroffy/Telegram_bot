@@ -1,7 +1,10 @@
 databaseChangeLog:
   - include:
+      file: db/changelog/changeset/user_write_seq.yaml
+  - include:
+      file: db/changelog/changeset/user_cred_seq.yaml
+  - include:
       file: db/changelog/changeset/create-usercredential.yaml
   - include:
       file: db/changelog/changeset/create-userwritebot.yaml
-  - include:
-      file: db/changelog/changeset/create-common_seq.yaml
+

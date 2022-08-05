@@ -29,7 +29,7 @@ public class UserWriteBot {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_write_generator")
-  @SequenceGenerator(name = "user_write_generator", sequenceName = "common_sequence", allocationSize = 3)
+  @SequenceGenerator(name = "user_write_generator", sequenceName = "user_write_sequence", allocationSize = 3)
   @Column
   private Long id;
 
