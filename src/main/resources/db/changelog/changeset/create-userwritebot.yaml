@@ -11,7 +11,7 @@ databaseChangeLog:
                   type: bigint
                   constraints:
                     primaryKey: true
-                  defaultValueComputed: 'user_write_sequence'
+                  defaultValueSequenceNext: 'user_write_sequence'
               - column:
                   name: FIRST_NAME
                   type: varchar(1024)
