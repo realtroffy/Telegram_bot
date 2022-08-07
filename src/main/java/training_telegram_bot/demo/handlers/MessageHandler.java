@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import training_telegram_bot.demo.error.TelegramExecuteMessageException;
 import training_telegram_bot.demo.keybord.ReplyKeyboardMaker;
-import training_telegram_bot.demo.model.TelegramBot;
+import training_telegram_bot.demo.component.TelegramBot;
 import training_telegram_bot.demo.parser.htmlImpl.GoCarHtmlParser;
 import training_telegram_bot.demo.parser.htmlImpl.KFCHtmlParser;
 import training_telegram_bot.demo.parser.xmlImpl.CHGKXmlParser;

@@ -1,4 +1,4 @@
-package training_telegram_bot.demo.model;
+package training_telegram_bot.demo.component;
 
 import lombok.Getter;
 import lombok.Setter;
