@@ -41,6 +41,8 @@
     <input class="" type="submit" value="Logout"/>
 </form>
 <br>
-<a th:text="${lastPage}" th:href="@{/users(page=${lastPage})}" style="text-align: center">Get last page</a>
+<div style="text-align: center">
+    <a th:href="@{/users(page=${lastPage})}">Get last page</a>
+</div>
 </body>
 </html>
