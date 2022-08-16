@@ -16,6 +16,7 @@ public class UserVisitController {
     @GetMapping("/users")
     public String getAllMessagesFromUsers(Model model, Pageable pageable) {
         model.addAttribute("users", userVisitRepository.findAll(pageable));
+        model.addAttribute("lastPage", userVisitRepository.count()/20);
         return "users";
     }
 }
