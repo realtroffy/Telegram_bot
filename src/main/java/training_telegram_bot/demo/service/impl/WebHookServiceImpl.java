@@ -16,8 +16,8 @@ public class WebHookServiceImpl implements WebHookService {
 
   @Override
   @Transactional
-  public void saveToDataBase(UserWriteBot userWriteBot) {
-    userVisitRepository.save(userWriteBot);
+  public UserWriteBot saveToDataBase(UserWriteBot userWriteBot) {
+    return userVisitRepository.save(userWriteBot);
   }
 
   @Override

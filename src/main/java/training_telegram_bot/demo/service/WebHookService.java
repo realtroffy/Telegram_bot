@@ -5,7 +5,7 @@ import training_telegram_bot.demo.model.UserWriteBot;
 
 public interface WebHookService {
 
-  void saveToDataBase(UserWriteBot userWriteBot);
+  UserWriteBot saveToDataBase(UserWriteBot userWriteBot);
 
   UserWriteBot getUserFromUpdate(Update update);
 }
