@@ -32,16 +32,16 @@ public class UserCredential {
   public boolean equals(Object o) {
     if (this == o) return true;
 
-    if (o == null || getClass() != o.getClass()) return false;
+    if (!(o instanceof UserCredential)) return false;
 
     UserCredential that = (UserCredential) o;
 
-    return new EqualsBuilder().append(username, that.username).isEquals();
+    return new EqualsBuilder().append(id, that.id).append(username, that.username).append(password, that.password).isEquals();
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(17, 37).append(username).toHashCode();
+    return new HashCodeBuilder(17, 37).append(id).append(username).append(password).toHashCode();
   }
 
   @Override

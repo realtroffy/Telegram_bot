@@ -1,9 +1,9 @@
 package training_telegram_bot.demo.service.impl;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.telegram.telegrambots.meta.api.objects.Update;
 import training_telegram_bot.demo.model.UserWriteBot;
 import training_telegram_bot.demo.repository.UserVisitRepository;
 import training_telegram_bot.demo.service.UserVisitService;
@@ -15,20 +15,12 @@ public class UserVisitServiceImpl implements UserVisitService {
   private final UserVisitRepository userVisitRepository;
 
   @Override
-  @Transactional
-  public void saveToDataBase(UserWriteBot userWriteBot) {
-    userVisitRepository.save(userWriteBot);
+  public Page<UserWriteBot> findAllUserWriteBot(Pageable pageable) {
+    return userVisitRepository.findAll(pageable);
   }
 
   @Override
-  public UserWriteBot getUserFromUpdate(Update update) {
-    String firstName = update.getMessage().getFrom().getFirstName();
-    String lastName = update.getMessage().getFrom().getLastName();
-    String buttonName = update.getMessage().getText();
-    UserWriteBot userWriteBot = new UserWriteBot();
-    userWriteBot.setFirstName(firstName);
-    userWriteBot.setLastName(lastName);
-    userWriteBot.setButtonName(buttonName);
-    return userWriteBot;
+  public long countAllUserWriteBot() {
+    return userVisitRepository.count();
   }
 }

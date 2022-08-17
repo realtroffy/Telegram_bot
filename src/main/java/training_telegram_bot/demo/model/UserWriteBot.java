@@ -54,26 +54,16 @@ public class UserWriteBot {
   public boolean equals(Object o) {
     if (this == o) return true;
 
-    if (o == null || getClass() != o.getClass()) return false;
+    if (!(o instanceof UserWriteBot)) return false;
 
     UserWriteBot that = (UserWriteBot) o;
 
-    return new EqualsBuilder()
-        .append(firstName, that.firstName)
-        .append(lastName, that.lastName)
-        .append(dateMessage, that.dateMessage)
-        .append(buttonName, that.buttonName)
-        .isEquals();
+    return new EqualsBuilder().append(id, that.id).append(firstName, that.firstName).append(lastName, that.lastName).append(dateMessage, that.dateMessage).append(buttonName, that.buttonName).isEquals();
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(17, 37)
-        .append(firstName)
-        .append(lastName)
-        .append(dateMessage)
-        .append(buttonName)
-        .toHashCode();
+    return new HashCodeBuilder(17, 37).append(id).append(firstName).append(lastName).append(dateMessage).append(buttonName).toHashCode();
   }
 
   @Override
