@@ -8,10 +8,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import training_telegram_bot.demo.service.UserVisitService;
 
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig {
+
+  private final UserVisitService userVisitService;
 
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -38,7 +41,7 @@ public class SecurityConfig {
         .formLogin()
         .loginPage("/login")
         .loginProcessingUrl("/process_login")
-        .defaultSuccessUrl("/users", true)
+        .defaultSuccessUrl("/users?page=" + userVisitService.countAllUserWriteBot() / 20, true)
         .failureUrl("/login?error")
         .and()
         .logout()
