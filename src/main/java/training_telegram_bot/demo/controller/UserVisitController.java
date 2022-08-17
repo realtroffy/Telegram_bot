@@ -17,7 +17,7 @@ public class UserVisitController {
   @GetMapping("/users")
   public String getAllMessagesFromUsers(Model model, Pageable pageable) {
     model.addAttribute("users", userVisitService.findAllUserWriteBot(pageable));
-    model.addAttribute("lastPage", userVisitService.countAllUserWriteBot());
+    model.addAttribute("lastPage", userVisitService.countAllUserWriteBot()/20);
     return "users";
   }
 }
