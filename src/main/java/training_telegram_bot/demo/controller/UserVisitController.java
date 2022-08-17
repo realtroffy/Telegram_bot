@@ -6,17 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import training_telegram_bot.demo.repository.UserVisitRepository;
+import training_telegram_bot.demo.service.UserVisitService;
 
 @Controller
 @AllArgsConstructor
 public class UserVisitController {
 
-    private final UserVisitRepository userVisitRepository;
+  private final UserVisitService userVisitService;
 
-    @GetMapping("/users")
-    public String getAllMessagesFromUsers(Model model, Pageable pageable) {
-        model.addAttribute("users", userVisitRepository.findAll(pageable));
-        model.addAttribute("lastPage", userVisitRepository.count()/20);
-        return "users";
-    }
+  @GetMapping("/users")
+  public String getAllMessagesFromUsers(Model model, Pageable pageable) {
+    model.addAttribute("users", userVisitService.findAllUserWriteBot(pageable));
+    model.addAttribute("lastPage", userVisitService.countAllUserWriteBot());
+    return "users";
+  }
 }

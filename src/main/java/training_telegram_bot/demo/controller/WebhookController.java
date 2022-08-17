@@ -10,19 +10,19 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import training_telegram_bot.demo.model.UserWriteBot;
 import training_telegram_bot.demo.service.TelegramFacade;
-import training_telegram_bot.demo.service.UserVisitService;
+import training_telegram_bot.demo.service.WebHookService;
 
 @RestController("/")
 @AllArgsConstructor
 public class WebhookController {
 
-  private final UserVisitService userVisitService;
+  private final WebHookService webHookService;
   private final TelegramFacade telegramFacade;
 
   @PostMapping
   public Message onUpdateReceived(@RequestBody Update update) {
-    UserWriteBot userWriteBot = userVisitService.getUserFromUpdate(update);
-    userVisitService.saveToDataBase(userWriteBot);
+    UserWriteBot userWriteBot = webHookService.getUserFromUpdate(update);
+    webHookService.saveToDataBase(userWriteBot);
     return telegramFacade.handleUpdate(update);
   }
 
