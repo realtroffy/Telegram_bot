@@ -14,6 +14,8 @@ import training_telegram_bot.demo.service.UserVisitService;
 @AllArgsConstructor
 public class SecurityConfig {
 
+  public static final int DEFAULT_COUNT_ENTITY_ON_PAGE = 20;
+
   private final UserVisitService userVisitService;
 
   @Bean
@@ -41,7 +43,9 @@ public class SecurityConfig {
         .formLogin()
         .loginPage("/login")
         .loginProcessingUrl("/process_login")
-        .defaultSuccessUrl("/users?page=" + userVisitService.countAllUserWriteBot() / 20, true)
+        .defaultSuccessUrl(
+            "/users?page=" + userVisitService.countAllUserWriteBot() / DEFAULT_COUNT_ENTITY_ON_PAGE,
+            true)
         .failureUrl("/login?error")
         .and()
         .logout()

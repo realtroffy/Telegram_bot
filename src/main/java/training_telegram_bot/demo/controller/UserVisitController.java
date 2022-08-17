@@ -12,12 +12,15 @@ import training_telegram_bot.demo.service.UserVisitService;
 @AllArgsConstructor
 public class UserVisitController {
 
+  public static final int DEFAULT_COUNT_ENTITY_ON_PAGE = 20;
+
   private final UserVisitService userVisitService;
 
   @GetMapping("/users")
   public String getAllMessagesFromUsers(Model model, Pageable pageable) {
     model.addAttribute("users", userVisitService.findAllUserWriteBot(pageable));
-    model.addAttribute("lastPage", userVisitService.countAllUserWriteBot()/20);
+    model.addAttribute(
+        "lastPage", userVisitService.countAllUserWriteBot() / DEFAULT_COUNT_ENTITY_ON_PAGE);
     return "users";
   }
 }
