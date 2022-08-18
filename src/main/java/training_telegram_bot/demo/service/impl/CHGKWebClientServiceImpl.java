@@ -1,5 +1,6 @@
 package training_telegram_bot.demo.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,13 @@ public class CHGKWebClientServiceImpl implements WebClientService {
 
   private final WebClient webClient;
 
+  @Autowired
   public CHGKWebClientServiceImpl(WebClient webClient) {
     this.webClient = webClient;
+  }
+
+  public CHGKWebClientServiceImpl(String questionUrl) {
+    this.webClient = WebClient.create(questionUrl);
   }
 
   @Override
