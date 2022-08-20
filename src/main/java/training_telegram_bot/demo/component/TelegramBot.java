@@ -20,7 +20,7 @@ public class TelegramBot extends SpringWebhookBot {
   @Value("${telegrambot.userName}")
   private String botUsername;
 
-  @Value("${telegrambot.botToken}")
+  @Value("${TELEGRAMBOT_TOKEN}")
   private String botToken;
 
   public TelegramBot(SetWebhook setWebhook) {
