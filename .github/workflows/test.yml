@@ -22,7 +22,7 @@ jobs:
 
       #       build project and run all tests & checks
       - name: Maven Verify
-        run: mvn -DJDBC_DATABASE_URL=${{secrets.JDBC_DATABASE_URL}} -B clean verify
+        run: mvn -B clean verify -DJDBC_DATABASE_URL=${{secrets.JDBC_DATABASE_URL}}
 
       #       Upload code coverage report to Codecov
       - name: Test Coverage
