@@ -23,10 +23,6 @@ jobs:
       #       build project and run all tests & checks
       - name: Maven Verify
         run: mvn -B clean verify
-        with:
-          JDBC_DATABASE_URL: ${{secrets.JDBC_DATABASE_URL}}
-          JDBC_DATABASE_USERNAME: ${{JDBC_DATABASE_USERNAME}}
-          JDBC_DATABASE_PASSWORD: ${{secrets.JDBC_DATABASE_PASSWORD}}
 
       #       Upload code coverage report to Codecov
       - name: Test Coverage
