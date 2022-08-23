@@ -28,7 +28,7 @@ class WebHookServiceImplTest {
   @InjectMocks private WebHookServiceImpl webHookServiceImpl;
 
   @Test
-  void saveToDataBaseTest() {
+  public void saveToDataBaseTest() {
     when(userVisitRepository.save(any(UserWriteBot.class))).thenReturn(userWriteBot);
 
     webHookServiceImpl.saveToDataBase(userWriteBot);
@@ -37,7 +37,7 @@ class WebHookServiceImplTest {
   }
 
   @Test
-  void getUserFromUpdateTest() {
+  public void getUserFromUpdateTest() {
     User user = new User();
     user.setFirstName("Artur");
     user.setLastName("Asiptsou");

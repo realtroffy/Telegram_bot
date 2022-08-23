@@ -26,7 +26,7 @@ class UserVisitServiceImplTest {
   @InjectMocks private UserVisitServiceImpl userVisitServiceImpl;
 
   @Test
-  void findAllUserWriteBotTest() {
+  public void findAllUserWriteBotTest() {
     when(userVisitRepository.findAll(any(Pageable.class))).thenReturn(userWriteBotPage);
 
     userVisitServiceImpl.findAllUserWriteBot(pageable);
@@ -35,7 +35,7 @@ class UserVisitServiceImplTest {
   }
 
   @Test
-  void countAllUserWriteBotTest() {
+  public void countAllUserWriteBotTest() {
     when(userVisitRepository.count()).thenReturn(1L);
 
     userVisitServiceImpl.countAllUserWriteBot();

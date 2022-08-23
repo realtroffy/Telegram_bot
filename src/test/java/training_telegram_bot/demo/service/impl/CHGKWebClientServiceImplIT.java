@@ -19,23 +19,23 @@ class CHGKWebClientServiceImplIT {
   private CHGKWebClientServiceImpl chgkWebClientServiceImpl;
 
   @BeforeAll
-  static void setUp() throws IOException {
+  public static void setUp() throws IOException {
     mockBackEnd = new MockWebServer();
     mockBackEnd.start();
   }
 
   @AfterAll
-  static void tearDown() throws IOException {
+  public static void tearDown() throws IOException {
     mockBackEnd.shutdown();
   }
 
   @BeforeEach
-  void initialize() {
+  public void initialize() {
     chgkWebClientServiceImpl = new CHGKWebClientServiceImpl(mockBackEnd.url("/").toString());
   }
 
   @Test
-  void getResponseEntityTest() {
+  public void getResponseEntityTest() {
     String entityAnswer = "Some string";
     mockBackEnd.enqueue(new MockResponse().setBody(entityAnswer));
 
