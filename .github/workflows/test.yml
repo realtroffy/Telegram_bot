@@ -25,7 +25,7 @@ jobs:
           JDBC_DATABASE_URL: ${{secrets.JDBC_DATABASE_URL}}
           JDBC_DATABASE_USERNAME: ${{secrets.JDBC_DATABASE_USERNAME}}
           JDBC_DATABASE_PASSWORD: ${{secrets.JDBC_DATABASE_PASSWORD}}
-          TELEGRAMBOT_TOKEN: ${secrets.TELEGRAMBOT_TOKEN}
+          TELEGRAMBOT_TOKEN: ${{secrets.TELEGRAMBOT_TOKEN}}
         run:  mvn -B clean verify
       - name: Test Coverage
         uses: codecov/codecov-action@v3
