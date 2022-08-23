@@ -21,8 +21,10 @@ jobs:
           java-version: '11'
 
       - name: Install dependencies
-        run: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+        run: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -DJDBC_DATABASE_URL=${{secrets.JDBC_DATABASE_URL}} -B -V
       - name: Run tests and collect coverage
         run: mvn -B test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
+
+
