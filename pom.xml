@@ -167,7 +167,7 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <phase>prepare-package</phase>
+                        <phase>test</phase>
                     </execution>
                 </executions>
             </plugin>
