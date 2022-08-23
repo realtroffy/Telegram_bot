@@ -23,8 +23,8 @@ jobs:
       - name: Maven Verify
         env:
           JDBC_DATABASE_URL: ${{secrets.JDBC_DATABASE_URL}}
-          JDBC_DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-          JDBC_DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+          JDBC_DATABASE_USERNAME: ${{secrets.JDBC_DATABASE_USERNAME}}
+          JDBC_DATABASE_PASSWORD: ${{secrets.JDBC_DATABASE_PASSWORD}}
         run:  mvn -B clean verify
       - name: Test Coverage by codecov
         uses: codecov/codecov-action@v3
