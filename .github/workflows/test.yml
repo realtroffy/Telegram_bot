@@ -20,8 +20,10 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Install dependenciec, build and execute tests
-        run: mvn test JDBC_DATABASE_URL=${{secrets.JDBC_DATABASE_URL}}
+      - name: Install dependencies
+        run: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - name: Run tests and collect coverage
+        run: mvn -B test JDBC_DATABASE_URL=${{secrets.JDBC_DATABASE_URL}}
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
 
