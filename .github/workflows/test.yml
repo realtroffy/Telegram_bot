@@ -20,11 +20,9 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Install dependencies
-        run: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-      - name: Run tests and collect coverage
-        run: mvn -B test
-      - name: Upload coverage to Codecov
+      - name: Maven Verify
+        run: mvn -B clean verify
+      - name: Test Coverage
         uses: codecov/codecov-action@v3
 
 
