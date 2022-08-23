@@ -26,7 +26,7 @@ jobs:
           JDBC_DATABASE_USERNAME: ${{secrets.JDBC_DATABASE_USERNAME}}
           JDBC_DATABASE_PASSWORD: ${{secrets.JDBC_DATABASE_PASSWORD}}
         run:  mvn -B clean verify
-      - name: Test Coverage by codecov
+      - name: Test Coverage
         uses: codecov/codecov-action@v3
 
 
