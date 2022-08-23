@@ -35,7 +35,7 @@ class CHGKWebClientServiceImplIT {
   }
 
   @Test
-  public void getResponseEntityTest() {
+  void getResponseEntityTest() {
     String entityAnswer = "Some string";
     mockBackEnd.enqueue(new MockResponse().setBody(entityAnswer));
 
