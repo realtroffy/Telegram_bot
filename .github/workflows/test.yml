@@ -27,7 +27,7 @@ jobs:
           JDBC_DATABASE_PASSWORD: ${{secrets.JDBC_DATABASE_PASSWORD}}
           TELEGRAMBOT_TOKEN: ${{secrets.TELEGRAMBOT_TOKEN}}
         run:  mvn -B clean verify
-      - name: Test Coverage
+      - name: Test Coverage and some
         uses: codecov/codecov-action@v3
 
 
