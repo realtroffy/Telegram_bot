@@ -9,4 +9,4 @@ CI by travis ci(clickable):
 <img src="https://app.travis-ci.com/realtroffy/Telegram_bot.svg?branch=master"/>
 </a>
 
-add sonar
+add sonar test
