@@ -8,3 +8,5 @@ CI by travis ci(clickable):
 <a href="https://app.travis-ci.com/github/realtroffy/Telegram_bot" >
 <img src="https://app.travis-ci.com/realtroffy/Telegram_bot.svg?branch=master"/>
 </a>
+
+add sonar test
