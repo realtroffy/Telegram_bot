@@ -37,6 +37,6 @@ jobs:
           JDBC_DATABASE_USERNAME: ${{secrets.JDBC_DATABASE_USERNAME}}
           JDBC_DATABASE_PASSWORD: ${{secrets.JDBC_DATABASE_PASSWORD}}
           TELEGRAMBOT_TOKEN: ${{secrets.TELEGRAMBOT_TOKEN}}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=realtroffy_Telegram_bot -Dsonar.organization=realtroffy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./target/site/jacoco/jacoco.xml
+        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=realtroffy_Telegram_bot -Dsonar.organization=realtroffy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./target/site/jacoco/jacoco.xml
 
 
