@@ -86,13 +86,13 @@ public class CHGKXmlParser implements XmlParser {
 
     Pattern pattern = Pattern.compile(PICTURE_PATTERN);
     Matcher matcher = pattern.matcher(questionString);
-    String pictureString = "";
+    String pictureString;
 
     while (matcher.find()) {
       int start = matcher.start();
       int end = matcher.end();
       pictureString = questionString.substring(start, end);
-      if (!pictureString.isEmpty()) {
+      if (pictureString.length()>0) {
         pictureUrls.add(PICTURE_URL + pictureString);
       }
     }
