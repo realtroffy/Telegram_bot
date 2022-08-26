@@ -33,10 +33,10 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     http.csrf()
-        .ignoringAntMatchers("/")
+        .ignoringAntMatchers("/update")
         .and()
         .authorizeHttpRequests()
-        .antMatchers("/", "/login", "/error")
+        .antMatchers("/", "/update", "/login", "/error")
         .permitAll()
         .anyRequest()
         .authenticated()

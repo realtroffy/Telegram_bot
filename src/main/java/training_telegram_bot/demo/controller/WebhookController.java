@@ -12,7 +12,7 @@ import training_telegram_bot.demo.model.UserWriteBot;
 import training_telegram_bot.demo.service.TelegramFacade;
 import training_telegram_bot.demo.service.WebHookService;
 
-@RestController("/")
+@RestController("/update")
 @AllArgsConstructor
 public class WebhookController {
 
@@ -26,7 +26,7 @@ public class WebhookController {
     return telegramFacade.handleUpdate(update);
   }
 
-  @GetMapping
+  @GetMapping("/")
   public ResponseEntity<String> getAnswerIfAppIsAvailable() {
     return ResponseEntity.ok("App works fine");
   }
