@@ -32,10 +32,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-    http.csrf()
-        .ignoringAntMatchers("/update")
-        .and()
-        .authorizeHttpRequests()
+    http.authorizeHttpRequests()
         .antMatchers("/health", "/update", "/login", "/error")
         .permitAll()
         .anyRequest()
