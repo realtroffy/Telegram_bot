@@ -1,8 +1,6 @@
 package training_telegram_bot.demo.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,10 +22,5 @@ public class WebhookController {
     UserWriteBot userWriteBot = webHookService.getUserFromUpdate(update);
     webHookService.saveToDataBase(userWriteBot);
     return telegramFacade.handleUpdate(update);
-  }
-
-  @GetMapping("/")
-  public ResponseEntity<String> getAnswerIfAppIsAvailable() {
-    return ResponseEntity.ok("App works fine");
   }
 }
