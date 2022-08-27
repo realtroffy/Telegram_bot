@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -26,7 +27,9 @@ import java.time.ZoneId;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserWriteBot {
+public class UserWriteBot implements Serializable {
+
+  private static final long serialVersionUID = 1450259395197917962L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_write_generator")

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table
@@ -13,7 +14,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserCredential {
+public class UserCredential implements Serializable {
+
+  private static final long serialVersionUID = 5682610754719606155L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_cred_generator")
