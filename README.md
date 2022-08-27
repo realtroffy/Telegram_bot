@@ -11,5 +11,5 @@ CI by travis ci(clickable):
 
 Sonar quality gate:
 <a href="https://sonarcloud.io/dashboard?id=realtroffy_Telegram_bot&branch=master" >
-<img src="https://sonarcloud.io/images/sonarcloud-logo.svg"/>
+<img width="30" height="30" src="https://sonarcloud.io/images/sonarcloud-logo.svg"/>
 </a>
