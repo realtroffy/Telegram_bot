@@ -9,4 +9,7 @@ CI by travis ci(clickable):
 <img src="https://app.travis-ci.com/realtroffy/Telegram_bot.svg?branch=master"/>
 </a>
 
-add sonar test
+Sonar quality gate:
+<a href="https://sonarcloud.io/dashboard?id=realtroffy_Telegram_bot&branch=master" >
+<img src="https://sonarcloud.io/images/sonarcloud-logo.svg"/>
+</a>
