@@ -8,8 +8,8 @@
         <version>2.7.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>training_telegram_bot</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>training.telegrambot</groupId>
+    <artifactId>telegrambot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>telegrambot</name>
     <description>Demo project for Spring Boot</description>
@@ -105,7 +105,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.7.1</version>
                 <configuration>
-                    <mainClass>training_telegram_bot.demo.TelegrambotApplication</mainClass>
+                    <mainClass>TelegrambotApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
