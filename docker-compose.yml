@@ -9,7 +9,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=123
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
     depends_on:
       - db
 
@@ -19,5 +19,10 @@ services:
       - "5432:5432"
     container_name: database
     environment:
-      - POSTGRES_PASSWORD=123
       - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=123
+    volumes:
+      - pg:/var/lib/postgresql/data
+
+volumes:
+  pg:
