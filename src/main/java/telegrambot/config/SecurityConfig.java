@@ -36,22 +36,22 @@ public class SecurityConfig {
         .ignoringAntMatchers("/update")
         .and()
         .authorizeHttpRequests()
-        .antMatchers("/update", "/login", "/error")
+        .antMatchers("/update", "/login2", "/error")
         .permitAll()
         .anyRequest()
         .authenticated()
         .and()
         .formLogin()
-        .loginPage("/login")
+        .loginPage("/login2")
         .loginProcessingUrl("/process_login")
         .defaultSuccessUrl(
             "/users?page=" + userVisitService.countAllUserWriteBot() / DEFAULT_COUNT_ENTITY_ON_PAGE,
             true)
-        .failureUrl("/login?error")
+        .failureUrl("/login2?error")
         .and()
         .logout()
         .logoutUrl("/logout")
-        .logoutSuccessUrl("/login?logout");
+        .logoutSuccessUrl("/login2?logout");
 
     return http.build();
   }
