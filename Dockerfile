@@ -7,6 +7,14 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:11
 
+WORKDIR /opt/workdir/
+#.crt file in the same folder as your Dockerfile
+ARG CERT="kfc.cer"
+#import cert into java
+COPY $CERT /opt/workdir/
+
+RUN keytool -importcert -file $CERT -alias $CERT -cacerts -storepass changeit -noprompt
+
 COPY --from=MAVEN_BUILD /target/telegrambot.jar /telegrambot.jar
 
 ENTRYPOINT ["java","-jar","telegrambot.jar"]
