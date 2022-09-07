@@ -36,7 +36,7 @@ public class SecurityConfig {
         .ignoringAntMatchers("/update")
         .and()
         .authorizeHttpRequests()
-        .antMatchers("/update", "/login", "/error", "/css/**", "/js/**", "/webjars/**")
+        .antMatchers("/update", "/login", "/error", "/css/**", "/js/**", "/webjars/**", "/question")
         .permitAll()
         .anyRequest()
         .authenticated()
