@@ -1,0 +1,1 @@
+web: bin/start-pgbouncer-stunnel java -Dserver.port=$PORT $JAVA_OPTS -jar target/telegrambot.jar
