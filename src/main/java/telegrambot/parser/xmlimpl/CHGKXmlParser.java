@@ -30,7 +30,6 @@ public class CHGKXmlParser implements XmlParser {
   public static final String PICTURE_URL = "https://db.chgk.info/images/db/";
 
   private final WebClientService webClientService;
-  private final XmlMapper xmlMapper;
 
   public Map<String, Object> processQuestionButton() {
     Map<String, Object> questionInfo = new HashMap<>();
@@ -49,7 +48,7 @@ public class CHGKXmlParser implements XmlParser {
       questionInfo.put("pictureUrls", getPictureUrlIfPresent(chgkQuestion.getQuestion()));
 
       String completeQuestion =
-              chgkQuestion.getQuestion()
+          chgkQuestion.getQuestion()
               + "\n"
               + "Ответ: "
               + "<tg-spoiler>"
@@ -78,7 +77,7 @@ public class CHGKXmlParser implements XmlParser {
       int start = matcher.start();
       int end = matcher.end();
       pictureString = questionString.substring(start, end);
-      if (pictureString.length()>0) {
+      if (pictureString.length() > 0) {
         pictureUrls.add(PICTURE_URL + pictureString);
       }
     }
@@ -86,6 +85,7 @@ public class CHGKXmlParser implements XmlParser {
   }
 
   private CHGKQuestion convertStringToObject(String responseWithoutNewLine) {
+    XmlMapper xmlMapper = new XmlMapper();
     xmlMapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
     CHGKQuestion chgkQuestion;
     try {
