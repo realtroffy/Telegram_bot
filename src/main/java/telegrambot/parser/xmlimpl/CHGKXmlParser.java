@@ -2,10 +2,12 @@ package telegrambot.parser.xmlimpl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import telegrambot.error.CreateObjectFromXmlSourceException;
 import telegrambot.error.GetBodyFromStringXmlException;
@@ -30,6 +32,7 @@ public class CHGKXmlParser implements XmlParser {
   public static final String PICTURE_URL = "https://db.chgk.info/images/db/";
 
   private final WebClientService webClientService;
+  private MappingJackson2XmlHttpMessageConverter xmlConverter;
 
   public Map<String, Object> processQuestionButton() {
     Map<String, Object> questionInfo = new HashMap<>();
@@ -85,7 +88,7 @@ public class CHGKXmlParser implements XmlParser {
   }
 
   private CHGKQuestion convertStringToObject(String responseWithoutNewLine) {
-    XmlMapper xmlMapper = new XmlMapper();
+    ObjectMapper xmlMapper = xmlConverter.getObjectMapper();
     xmlMapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
     CHGKQuestion chgkQuestion;
     try {
