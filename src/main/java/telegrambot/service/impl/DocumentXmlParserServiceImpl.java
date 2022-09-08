@@ -6,7 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import telegrambot.service.DocumentXmlParserService;
-import telegrambot.error.CreateDocumentFromXMLException;
+import telegrambot.error.CreateObjectFromXmlSourceException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,7 +29,7 @@ public class DocumentXmlParserServiceImpl implements DocumentXmlParserService {
       DocumentBuilder builder = factory.newDocumentBuilder();
       return builder.parse(new InputSource(new StringReader(stringXml)));
     } catch (Exception e) {
-      throw new CreateDocumentFromXMLException("Exception while create connection or parse XML");
+      throw new CreateObjectFromXmlSourceException("Exception while create connection or parse XML");
     }
   }
 }

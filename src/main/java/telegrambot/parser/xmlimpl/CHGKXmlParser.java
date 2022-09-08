@@ -1,17 +1,16 @@
 package telegrambot.parser.xmlimpl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Node;
+import telegrambot.error.CreateObjectFromXmlSourceException;
 import telegrambot.error.GetBodyFromStringXmlException;
 import telegrambot.model.CHGKQuestion;
 import telegrambot.parser.XmlParser;
-import telegrambot.service.DocumentXmlParserService;
 import telegrambot.service.WebClientService;
 
 import java.util.ArrayList;
@@ -26,15 +25,12 @@ import java.util.regex.Pattern;
 @Slf4j
 public class CHGKXmlParser implements XmlParser {
 
-  /*public static final String QUESTION = "Question";
-  public static final String ANSWER = "Answer";
-  public static final String COMMENT = "Comments";*/
-  public static final String ERROR_XML_MESSAGE = "Ошибка парсинга xml";
+  public static final String ERROR_XML_MESSAGE = "Error parsing xml";
   public static final String PICTURE_PATTERN = "\\d+\\.(jpg|png|gif|bmp)";
   public static final String PICTURE_URL = "https://db.chgk.info/images/db/";
 
   private final WebClientService webClientService;
-  //private final DocumentXmlParserService documentXmlParserService;
+  private final XmlMapper xmlMapper;
 
   public Map<String, Object> processQuestionButton() {
     Map<String, Object> questionInfo = new HashMap<>();
@@ -49,17 +45,7 @@ public class CHGKXmlParser implements XmlParser {
       }
 
       String withoutNewLine = responseXml.replace("\n", " ");
-
-      /*Node question = documentXmlParserService.getNode(withoutNewLine, QUESTION);
-      Node answer = documentXmlParserService.getNode(withoutNewLine, ANSWER);
-      Node comment = documentXmlParserService.getNode(withoutNewLine, COMMENT);
-
-      String questionString = question.getFirstChild().getNodeValue();
-      String answerString = answer.getFirstChild().getNodeValue();
-      String commentString;*/
-
       CHGKQuestion chgkQuestion = convertStringToObject(withoutNewLine);
-
       questionInfo.put("pictureUrls", getPictureUrlIfPresent(chgkQuestion.getQuestion()));
 
       String completeQuestion =
@@ -99,10 +85,14 @@ public class CHGKXmlParser implements XmlParser {
     return pictureUrls;
   }
 
-  @SneakyThrows
   private CHGKQuestion convertStringToObject(String responseWithoutNewLine) {
-    XmlMapper xmlMapper = new XmlMapper();
     xmlMapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
-    return xmlMapper.readValue(responseWithoutNewLine, CHGKQuestion.class);
+    CHGKQuestion chgkQuestion;
+    try {
+      chgkQuestion = xmlMapper.readValue(responseWithoutNewLine, CHGKQuestion.class);
+    } catch (JsonProcessingException e) {
+      throw new CreateObjectFromXmlSourceException("Couldn't read xml source");
+    }
+    return chgkQuestion;
   }
 }
