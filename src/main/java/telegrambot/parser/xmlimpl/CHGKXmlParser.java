@@ -3,7 +3,6 @@ package telegrambot.parser.xmlimpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +46,7 @@ public class CHGKXmlParser implements XmlParser {
       }
 
       String withoutNewLine = responseXml.replace("\n", " ");
-      CHGKQuestion chgkQuestion = convertStringToObject(withoutNewLine);
+      CHGKQuestion chgkQuestion = convertStringXmlToCHGKQuestion(withoutNewLine);
       questionInfo.put("pictureUrls", getPictureUrlIfPresent(chgkQuestion.getQuestion()));
 
       String completeQuestion =
@@ -87,7 +86,7 @@ public class CHGKXmlParser implements XmlParser {
     return pictureUrls;
   }
 
-  private CHGKQuestion convertStringToObject(String responseWithoutNewLine) {
+  private CHGKQuestion convertStringXmlToCHGKQuestion(String responseWithoutNewLine) {
     ObjectMapper xmlMapper = xmlConverter.getObjectMapper();
     xmlMapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
     CHGKQuestion chgkQuestion;
