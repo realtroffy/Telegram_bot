@@ -38,14 +38,15 @@ public class WebhookController {
       produces = {MediaType.APPLICATION_JSON_VALUE})
   public ResponseEntity<CHGKQuestion> getQuestion() {
     String response = webClientService.getResponseEntity().getBody();
-    CHGKQuestion chgkQuestion = convertStringToObject(response);
+    String responseWithoutNewLine = response.replace("\n", " ");
+    CHGKQuestion chgkQuestion = convertStringToObject(responseWithoutNewLine);
     return ResponseEntity.ok(chgkQuestion);
   }
 
   @SneakyThrows
-  private CHGKQuestion convertStringToObject(String response) {
+  private CHGKQuestion convertStringToObject(String responseWithoutNewLine) {
     XmlMapper xmlMapper = new XmlMapper();
     xmlMapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
-    return xmlMapper.readValue(response, CHGKQuestion.class);
+    return xmlMapper.readValue(responseWithoutNewLine, CHGKQuestion.class);
   }
 }

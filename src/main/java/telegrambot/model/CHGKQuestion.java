@@ -18,7 +18,10 @@ public class CHGKQuestion implements Serializable {
 
     private static final long serialVersionUID = 1683874324808432289L;
 
-    private String tourFileName;
-    @JsonProperty("Number")
-    private String number;
+    @JsonProperty("Question")
+    private String question;
+    @JsonProperty("Answer")
+    private String answer;
+    @JsonProperty("Comments")
+    private String comment;
 }
